@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200223094139_seedguarantor.cs" />
+    <Compile Remove="Migrations\20200223094139_seedguarantor.Designer.cs" />
+    <Compile Remove="Migrations\20200225070220_newcolumns.cs" />
+    <Compile Remove="Migrations\20200225070220_newcolumns.Designer.cs" />
+    <Compile Remove="Migrations\20200225124322_seedstudentguarantor.cs" />
+    <Compile Remove="Migrations\20200225124322_seedstudentguarantor.Designer.cs" />
+    <Compile Remove="Migrations\20200227064800_moretables.cs" />
+    <Compile Remove="Migrations\20200227064800_moretables.Designer.cs" />
+    <Compile Remove="Migrations\20200304132723_validationformodels.cs" />
+    <Compile Remove="Migrations\20200304132723_validationformodels.Designer.cs" />
+    <Compile Remove="Migrations\20200304133302_validationformodels.cs" />
+    <Compile Remove="Migrations\20200304133302_validationformodels.Designer.cs" />
+    <Compile Remove="Migrations\20200304133450_validationformodels.cs" />
+    <Compile Remove="Migrations\20200304133450_validationformodels.Designer.cs" />
+    <Compile Remove="Migrations\20200304134444_validationformodels.cs" />
+    <Compile Remove="Migrations\20200304134444_validationformodels.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

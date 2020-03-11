@@ -1,0 +1,26 @@
+﻿@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login Page";
+}
+<form class="wel" asp-controller="account" asp-action="Login" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input type="text" class="form-control" placeholder="Enter your email" asp-for="Email"><span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input type="password" class="form-control" placeholder="password" asp-for="Password" /><span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label asp-for="RememberMe">
+                <input asp-for="RememberMe" />
+                @Html.DisplayNameFor(m => m.RememberMe)
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-default btn-block" type="submit">Login</button>
+    @*<a class="btn btn-default btn-block" href="@Url.Action("dashboard", "home")">Login</a>*@
+</form>

@@ -1,0 +1,78 @@
+﻿@model EditView
+
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Edit Student";
+}
+
+    <form asp-controller="home" asp-action="EditStudent" method="post" class="mt-3">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.FirstName" class="form-control" /><span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.LastName" class="form-control" /><span class="text-danger" asp-validation-for="@Model.LastName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Email" class="form-control" /><span class="text-danger" asp-validation-for="@Model.Email"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Gender" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10"><select asp-for="@Model.Gender" asp-items="Html.GetEnumSelectList<gender>()" class="form-control"></select></div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Phone" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Phone" class="form-control" /><span class="text-danger" asp-validation-for="Phone"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Address" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Address" class="form-control" /><span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.MaritalStatus" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10"><select asp-for="@Model.MaritalStatus" asp-items="Html.GetEnumSelectList<maritalStatus>()" class="form-control"></select></div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="NextOfKinName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="NextOfKinName" class="form-control" /><span class="text-danger" asp-validation-for="NextOfKinName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="NextOfKinEmail" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="NextOfKinEmail" class="form-control" /><span class="text-danger" asp-validation-for="NextOfKinEmail"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="NextOfKinPhone" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="NextOfKinPhone" class="form-control" /><span class="text-danger" asp-validation-for="NextOfKinPhone"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="AddmissionType" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10"><select asp-for="AddmissionType" asp-items="Html.GetEnumSelectList<addmissionType>()" class="form-control"></select></div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Nationality" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10"><select asp-for="Nationality" asp-items="Html.GetEnumSelectList<nationality>()" class="form-control"></select></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6"><button type="submit" class="form-group btn btn-primary">Update</button></div>
+            <div class="col-sm-6"><button type="button" class="form-group btn btn-primary" asp-controller="home" asp-action="dashboard">Back</button></div>
+        </div>
+    </form>

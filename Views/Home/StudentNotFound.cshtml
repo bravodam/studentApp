@@ -1,0 +1,14 @@
+﻿@model int
+
+@{ 
+    ViewBag.Title = "404 Error | Page not found";
+}
+
+<div class="alert alert-danger bg-danger">
+    <h4 class="text-capitalize">404 not found error</h4>
+    <hr/>
+    <h5 class="text-uppercase">
+        Student with ID =  @Model cannot be found
+    </h5>
+    <a asp-controller="Home" asp-action="dashboard" class="btn btn-success"> Click here to see a list of all Students</a>
+</div>

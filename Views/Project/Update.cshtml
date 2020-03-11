@@ -1,0 +1,37 @@
+﻿@model projectViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Update a Project";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title">Create a new Program</h3>
+    </div>
+    <form asp-controller="Project" asp-action="update" method="post" class="mt-3 panel-body">
+        <input asp-for="Id" type="hidden" class="form-control" /><span class="text-danger" asp-validation-for="Id"></span>
+
+        <div class="form-group row">
+            <label asp-for="projectname" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="projectname" class="form-control" /><span class="text-danger" asp-validation-for="projectname"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="status" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10"><select asp-for="status" asp-items="Html.GetEnumSelectList<projectStatus>()" class="form-control"></select></div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="url" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="url" class="form-control" /><span class="text-danger" asp-validation-for="url"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6"><button type="submit" class="form-group btn btn-success">Update</button></div>
+        </div>
+    </form>
+</div>

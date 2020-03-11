@@ -1,0 +1,60 @@
+﻿@model ViewStudentGuarantor
+@*@inject Guarantor gua*@
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Student Guarantor";
+}
+
+<!-- website overview -->
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title">Search and Add</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <form>
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="search for a guarantor by Email" id="userinput" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- latest users -->
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title">@*Guarantor List for: @stu.FirstName*@</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover" id="datatable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Student Id</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var guarantor in Model.listGuarantor)
+                {
+                <tr>
+                    <td>@guarantor.FirstName</td>
+                    <td>@guarantor.LastName</td>
+                    <td>@guarantor._student_id</td>
+                    <td>@guarantor.Email</td>
+                    <td>@guarantor.Address</td>
+                    <td>@guarantor.Phone</td>
+                    <td><a class="glyphicon glyphicon-eye-open" asp-controller="guarantor" asp-action="FullView" asp-route-id="@guarantor.ID"></a></td>
+                    <td><a class="glyphicon glyphicon-edit" asp-controller="guarantor" asp-action="update" asp-route-id="@guarantor.ID"></a></td>
+                    <td><a class="glyphicon glyphicon-remove text-danger" asp-controller="guarantor" asp-action="delete" asp-route-id="@guarantor.ID"></a></td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

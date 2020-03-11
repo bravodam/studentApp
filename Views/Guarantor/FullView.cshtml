@@ -1,0 +1,31 @@
+﻿@model GuarantorView
+
+@{ 
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Full View";
+}
+
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="text-center text-uppercase">@Model.guarantor.FirstName @Model.guarantor.LastName</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <!--<img class="card-img-top img-responsive img-thumbnail" src="~/images/download.jpeg" asp-append-version="true" />-->
+
+                <p>Employee ID : @Model.guarantor.ID</p>
+                <p>First Name : @Model.guarantor.FirstName</p>
+                <p>Last Name : @Model.guarantor.LastName</p>
+                <p>Address : @Model.guarantor.Address</p>
+                <p>Phone : @Model.guarantor.Phone</p>
+                <p>Gender : @Model.guarantor.Gender</p>
+                <p>Marital status : @Model.guarantor.MaritalStatus</p>
+                <p>Nationality : @Model.guarantor.Nationality</p>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-primary" asp-controller="guarantor" asp-action="update" asp-route-id="@Model.guarantor.ID">Edit</a>
+                <a asp-controller="guarantor" asp-action="delete" asp-route-id="@Model.guarantor.ID" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>

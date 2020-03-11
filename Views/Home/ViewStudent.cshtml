@@ -1,0 +1,223 @@
+﻿@model DashboardView
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Student View";
+    var imagepath = "~/images/" + (Model.student.ImagePath ?? "no_image.png");
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title">Student View || @Model.student.FirstName.ToUpper()</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-3">
+            <img class="card-img-top img-responsive img-thumbnail" width="200" src="@imagepath" asp-append-version="true" />
+            <h3>Admission Type</h3>
+            <p style="padding: 3px; background-color: darkred; color:white; font-weight:bold">@Model.student.AddmissionType</p>
+        </div>
+        <div class="col-md-9">
+            <hr />
+            <h3>Basic Info:</h3><hr />
+            <p><b>First Name: </b> <span>@Model.student.FirstName</span></p>
+            <p><b>Last Name: </b> <span>@Model.student.LastName</span></p>
+            <p><b>Date of Birth: </b> <span>@Model.student.DateOfBirth</span></p>
+            <hr />
+
+            <h3>Contact Info</h3><hr />
+            <p><b>Address: </b> <span>@Model.student.Address</span></p>
+            <p><b>Email: </b> <span>@Model.student.Email</span></p>
+            <p><b>Phone: </b> <span>@Model.student.Phone</span></p>
+            <p><b>Nationality: </b> <span>@Model.student.Nationality</span></p>
+            <hr />
+
+            <h3>Next of Kin Info</h3><hr />
+            <p><b>Full Name: </b> <span>@Model.student.NextOfKinName</span></p>
+            <p><b>Email: </b> <span>@Model.student.NextOfKinEmail</span></p>
+            <p><b>Phone: </b> <span>@Model.student.NextOfKinPhone</span></p>
+            <p><b>Document: </b> <span>@Model.student.NextOfKinDocumentUrl</span></p>
+            <div>
+                <a class="btn btn-primary" asp-controller="home" asp-action="EditStudent" asp-route-id="@Model.student.ID">Edit</a>
+                <a asp-controller="home" asp-action="delete" asp-route-id="@Model.student.ID" class="btn btn-danger">Delete</a>
+            </div>            
+        </div>
+    </div>
+</div>
+<div class="card-footer text-center">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a class="btn btn-warning" id="gua">Guarantor</a>
+        </li>
+        <li>
+            <a class="btn btn-warning" id="project">Project</a>
+        </li>
+        <li>
+            <a class="btn btn-warning" id="program">Program</a>
+        </li>
+        <li>
+            <a class="btn btn-warning" id="batch">Batch</a>
+        </li>
+        <li>
+            <a class="btn btn-warning" asp-controller="Project" asp-action="addProject" asp-route-id="@Model.student.ID">Employment History</a>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-body guarantor notshow" id="guarantor-div">
+    @if (@Model.guarantor == null)
+    {
+        <h4 style="color: darkred">@Model.error</h4>
+    }
+    else
+    {
+        <h3>Guarantor Info</h3>
+        <a class="btn btn-success" asp-controller="Guarantor" asp-action="create" asp-route-id="@Model.student.ID">Add</a>
+        <hr />
+        foreach (var gua in Model.guarantor)
+        {
+            <div class="col-md-12 bg-warning">
+                <div class="col-md-6">
+                    <p><b>First Name: </b> <span>@gua.FirstName</span></p>
+                    <p><b>Last Name: </b> <span>@gua.LastName</span></p>
+                    <p><b>Marital Status: </b> <span>@gua.MaritalStatus</span></p>
+                    <p><b>Nationality: </b> <span>@gua.Nationality</span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>Address: </b> <span>@gua.Address</span></p>
+                    <p><b>Email: </b> <span>@gua.Email</span></p>
+                    <p><b>Gender: </b> <span>@gua.Gender</span></p>
+                    <p><b>Phone: </b> <span>@gua.Phone</span></p>
+                    <a class="btn btn-primary" asp-controller="guarantor" asp-action="update" asp-route-id="@gua.ID">update</a>
+                    <a class="btn btn-danger" asp-controller="guarantor" asp-action="delete" asp-route-id="@gua.ID">delete</a>
+                </div>
+            </div>
+        }
+    }
+
+
+</div>
+<div class="panel panel-body notshow" id="project-div">
+    @if (@Model.batch == null)
+    {
+        <h4 style="color: darkred">@Model.error</h4>
+    }
+    else
+    {
+        <h3>Project Info</h3>
+        <a class="btn btn-success" asp-controller="Project" asp-action="addProject" asp-route-id="@Model.student.ID">Add</a> 
+        <hr />
+        foreach (var project in Model.project)
+        {
+            <div class="col-md-12 bg-warning">
+                <p><b>Project Name: <br /></b> <span>@project.Name</span></p>
+                <p><b>Project Status: <br /></b> <span>@project.Project_Status</span></p>
+                <p><b>Project Url: <br /></b> <span><a target="_blank" href="@project.ProjectUrl">@project.ProjectUrl</a></span></p>
+                <a class="btn btn-primary" asp-controller="Project" asp-action="update" asp-route-id="@project.Id">update</a>
+                <a class="btn btn-danger" asp-controller="Project" asp-action="delete" asp-route-id="@project.Id">delete</a>
+            </div>
+
+            @*<table class="table table-striped table-hover" id="datatable">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.student.FirstName</td>
+                            <td>@Model.student.LastName</td>
+                            <td>@Model.student.Gender</td>
+                            <td>@Model.student.Address</td>
+                            <td>@Model.student.Email</td>
+                            <td>@Model.student.Phone</td>
+                        </tr>
+                    </tbody>
+                </table>*@
+        }
+    }
+
+</div>
+
+<div class="panel panel-body notshow" id="program-div">
+    @if (@Model.program == null)
+    {
+        <h4 style="color: darkred">@Model.error</h4>
+    }
+    else
+    {
+        <h3>Program Info</h3>
+        @*<a class="btn btn-success" asp-controller="Program" asp-action="AddProgram" asp-route-id="@Model.student.ID">Add</a>*@
+        <hr />
+        <div class="col-md-12 bg-warning">
+            <p>Program Name: <br /> <span><b>@Model.program.Program_Name</b></span></p>
+            <p>Program Duration: <br /> <span><b>@Model.program.Duration</b></span></p>
+            <p>Program Cost: <br /> <span><b>@Model.program.Cost</b></span></p>
+        </div>
+    }
+
+</div>
+
+<div class="panel panel-body notshow" id="batch-div">
+    @if (@Model.batch == null)
+    {
+        <h4 style="color: darkred">@Model.error</h4>
+    }
+    else
+    {
+        <h3>Batch Info</h3>
+        @*<a class="btn btn-success" asp-controller="Program" asp-action="AddProgram" asp-route-id="@Model.student.ID">Add</a>*@
+        <hr />
+        <div class="col-md-12 bg-warning">
+            <p>Batch Name: <br /> <span><b>@Model.batch.Name</b></span></p>
+            <p>Batch Supervisor: <br /> <span><b>@Model.batch.Supervisor</b></span></p>
+            <p>Start Date: <br /> <span><b>@Model.batch.StartDate.ToShortDateString()</b></span></p>
+            <p>End Date: <br /> <span><b>@Model.batch.EndDate</b></span></p>
+            <p>Year: <br /> <span><b>@Model.batch.Year</b></span></p>
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    <script>
+
+        document.getElementById('gua').addEventListener('click', function () {
+            document.getElementById('guarantor-div').style.display = 'block';
+            document.getElementById('project-div').style.display = 'none';
+            document.getElementById('program-div').style.display = 'none';
+            document.getElementById('batch-div').style.display = 'none';
+            document.getElementById('emp-div').style.display = 'none';
+        });
+
+        document.getElementById('project').addEventListener('click', function () {
+            document.getElementById('guarantor-div').style.display = 'none';
+            document.getElementById('project-div').style.display = 'block';
+            document.getElementById('project-div').className = 'active';
+            document.getElementById('program-div').style.display = 'none';
+            document.getElementById('batch-div').style.display = 'none';
+            document.getElementById('emp-div').style.display = 'none';
+        });
+
+        document.getElementById('program').addEventListener('click', function () {
+            document.getElementById('guarantor-div').style.display = 'none';
+            document.getElementById('project-div').style.display = 'none';
+            document.getElementById('program-div').style.display = 'block';
+            document.getElementById('batch-div').style.display = 'none';
+            document.getElementById('emp-div').style.display = 'none';
+        });
+
+         document.getElementById('batch').addEventListener('click', function () {
+            document.getElementById('guarantor-div').style.display = 'none';
+            document.getElementById('project-div').style.display = 'none';
+            document.getElementById('program-div').style.display = 'none';
+            document.getElementById('batch-div').style.display = 'block';
+            document.getElementById('emp-div').style.display = 'none';
+        });
+    </script>
+}

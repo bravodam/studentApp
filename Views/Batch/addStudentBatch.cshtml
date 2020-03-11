@@ -1,0 +1,57 @@
+﻿@model studentBatchViewModel
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewBag.Title = "Update";
+}
+
+    <div class="panel panel-default">
+        <div class="panel-heading main-color-bg">
+            <h3 class="panel-title">Asign a Student a Batch</h3>
+        </div>
+        <form asp-controller="Batch" asp-action="addStudentBatch" method="post" class="mt-3 panel-body">
+            <input asp-for="Id" class="form-control" type="hidden" /><span class="text-danger" asp-validation-for="Id"></span>
+            <div class="col-md-6">
+
+                @*<div class="form-group row">
+                    <label asp-for="selectedBatch" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("selectedBatch", new SelectList(Model.batchList.Select(x => new { Value = x.Id, Text = x.Name }), "Value", "Text"))                        
+                    </div>
+                </div>*@
+
+                <div class="form-group row">
+                    <label asp-for="selectedStudent" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("selectedStudent", new SelectList(Model.studentList.Select(x => new { Value = x.ID, Text = x.FirstName }), "Value", "Text"))
+                    </div>
+                </div>         
+
+                <div class="form-group row">
+                    <div class="col-sm-6"><button type="submit" class="form-group btn btn-success">Asign Batch</button></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6"><button asp-controller="Batch" asp-action="Index" class="form-group btn btn-primary">Back</button></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                @*<div class="form-group row">
+                    <label asp-for="programType" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10"><select asp-for="programType" asp-items="Html.GetEnumSelectList<programName>()" class="form-control"></select></div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="duration" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10"><select asp-for="duration" asp-items="Html.GetEnumSelectList<programDuration>()" class="form-control"></select></div>
+                </div>*@
+                <div class="form-group row">
+                    <label asp-for="studentStaus" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10"><select asp-for="studentStaus" asp-items="Html.GetEnumSelectList<studentStatus>()" class="form-control"></select></div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="studentGrade" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10"><select asp-for="studentGrade" asp-items="Html.GetEnumSelectList<grade>()" class="form-control"></select></div>
+                </div>
+            </div>
+        </form>        
+    </div>
